@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+
+"""
+LOGIN_URL:- is the URL to redirect the user to log in (eg. using the login_required decorator)
+
+LOGOUT_URL:- Is the URL to redirect the user to logout.
+
+We're using the reverse_lazy() to build the URl's dynamically by their name,
+The reverse_lazy() function reverse URLs just like reverse() does, but you can use it
+when you need to reverse URL's before your project URL's configuration is loaded.
+"""

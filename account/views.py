@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+
 from .forms import LoginForm
 
 # Create your views here.
@@ -23,3 +25,23 @@ def user_login(request):
 	else:
 		form = LoginForm()
 	return render(request, 'account/login.html', {'form': form})
+
+@login_required
+def dashboard(request):
+	return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+"""
+	if the user is not authenticated, it redirects him to the login URL with
+	the URL he was trying to access as a GET parameter named next.
+
+	By doing so, the log in view redirects the user back to the URL he was trying
+	to access after he is successfully logged in.
+"""
+
+"""
+	We also define a section variable , We are going to use this variable to track
+	which section of the site the user is watching, Multiple views may correspond
+	to the same section,
+
+	This is simple way to define which section each view corresponds to.
+"""
