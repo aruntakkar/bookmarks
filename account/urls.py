@@ -24,4 +24,7 @@ urlpatterns = [
 
 	# user registration
 	url(r'^register/$', views.register, name='register'),
+
+	# edit the user profiles
+	url(r'^edit/$', views.edit, name='edit'),
 ]

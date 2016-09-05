@@ -136,3 +136,6 @@ We're using the reverse_lazy() to build the URl's dynamically by their name,
 The reverse_lazy() function reverse URLs just like reverse() does, but you can use it
 when you need to reverse URL's before your project URL's configuration is loaded.
 """
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
