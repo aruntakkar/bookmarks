@@ -125,6 +125,8 @@ LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 """
 LOGIN_URL:- is the URL to redirect the user to log in (eg. using the login_required decorator)
 
