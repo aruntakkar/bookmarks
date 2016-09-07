@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -140,7 +141,27 @@ when you need to reverse URL's before your project URL's configuration is loaded
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
-    )
+
+    'social.backends.facebook.Facebook2OAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
+)
+
+# Facebook oauth
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''  # FACEBOOK App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Twitter oauth
+
+SOCIAL_AUTH_TWITTER_KEY = ''  # Twitter consumer key
+SOCIAL_AUTH_TWITTER_SECRET = ''
+
+# Google oauth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
