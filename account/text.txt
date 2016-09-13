@@ -1,0 +1,49 @@
+Building a Custom authentication backend
+
+Django allows yout to authenticate against different sources.
+
+the AUTHENTICATION_BACKENDS settings includes the list of authentication backends
+for your project, By Default this setting is set to the following.
+
+	('django.contrib.auth.backends.ModelBackend',)
+
+The default ModelBackend authenticates users against the database using the User
+model of django.contrib.auth
+
+This will suit your most of your projects. However you can create custom backends
+to authenticate your user against other sources like a LDAP directory or any other
+system.
+
+Whenever you use the authenticate() function of django.contrib.auth, Django tries to
+authenticate the user against the each of the backends defined in AUTHENTICATION_BACKENDS
+one by one, untill one of them successfully authenticates the user.
+
+only if all the backends fail to authenticate the user, he or she will not be authenticated
+into your site.
+
+Django provides a simple way to define your own authentication backends. An
+authentication backend is a class that provides the following two methods.
+
+	* authenticate(): Takes user credentials as parameter. Has to return True
+	if the user has been successfully authenticated, or False otherwise
+
+	* get_user(): Takes a user ID parameter and has to return a User object.
+
+Creating a custom authentication backend is a simple as writing a python class that
+implements both methods. We're going to create an authentication backend to let users
+authenticate in our site using email address instead of their username.
+
+# Facebook oauth
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1857132137842895'  # FACEBOOK App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b5c92de7a5cf80c46e55dcb3306ab417'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Twitter oauth
+
+SOCIAL_AUTH_TWITTER_KEY = 'KXFWiQhwTBOJ80H98Sn5q3Qk9'  # Twitter consumer key
+SOCIAL_AUTH_TWITTER_SECRET = 'Ktuf5JsUlUOeqdEqcQt7B4tF2EtWigsopjtyg0IxJaaKvqQkjS'
+
+# Google oauth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '612968684537-tjt43acqj2m5kns4dodfi0vctbvisscm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'hu1-a7x1YoXaD0T9ONt7nkCy'
